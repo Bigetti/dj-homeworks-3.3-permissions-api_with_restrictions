@@ -4,6 +4,8 @@ from .models import Advertisement, AdvertisementStatusChoices
 from .serializers import AdvertisementSerializer
 from django_filters.rest_framework import DjangoFilterBackend
 
+ 
+
 
 class AdvertisementViewSet(ModelViewSet):
     """ViewSet для объявлений."""
@@ -22,3 +24,10 @@ class AdvertisementViewSet(ModelViewSet):
         if self.action in ["create", "update", "partial_update"]:
             return [IsAuthenticated()]
         return []
+
+    
+    def list(self, request, *args, **kwargs):
+        """Получение списка объявлений."""
+        print("List view called with request data:", request.data)
+        # Вызываем базовый метод list
+        return super().list(request, *args, **kwargs)

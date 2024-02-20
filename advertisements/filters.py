@@ -11,8 +11,11 @@ class AdvertisementFilter(filters.FilterSet):
     """Фильтры для объявлений."""
 
     # TODO: задайте требуемые фильтры
-    published = DateFromToRangeFilter()
+    creator = filters.NumberFilter(field_name='creator_id')
 
+    created_at_before = filters.DateFilter(field_name='created_at', lookup_expr='lte')
+
+    
     class Meta:
         model = Advertisement
-        fields = ['published']  # Указываете поля, по которым будет производиться фильтрация
+        fields = ['creator', 'created_at_before']
