@@ -73,11 +73,7 @@ TEMPLATES = [
     },
 ]
 
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication',
-    ]
-}
+
 
 WSGI_APPLICATION = 'api_with_restrictions.wsgi.application'
 
@@ -145,9 +141,11 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
     ],
+
+
     'DEFAULT_THROTTLE_CLASSES': [
-        # 'rest_framework.throttling.UserRateThrottle',
-        # 'rest_framework.throttling.AnonRateThrottle',
+         'rest_framework.throttling.UserRateThrottle',
+         'rest_framework.throttling.AnonRateThrottle',
 
     ],
     'DEFAULT_THROTTLE_RATES': {
