@@ -15,7 +15,13 @@ class AdvertisementFilter(filters.FilterSet):
 
     created_at_before = filters.DateFilter(field_name='created_at', lookup_expr='lte')
 
+    status = filters.CharFilter(field_name='status')
+
+
+
+
+
     
     class Meta:
         model = Advertisement
-        fields = ['creator', 'created_at_before']
+        fields = ['creator', 'created_at_before', 'status']
