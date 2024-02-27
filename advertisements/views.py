@@ -41,7 +41,7 @@ class AdvertisementViewSet(ModelViewSet):
         """Получение прав для действий."""
         if self.action in ["create", "update", "partial_update", "destroy"]:
             return [IsAuthor()]
-        return [permissions.IsAuthenticatedOrReadOnly]
+        return [permissions.IsAuthenticatedOrReadOnly()]
 
     
     def list(self, request, *args, **kwargs):
