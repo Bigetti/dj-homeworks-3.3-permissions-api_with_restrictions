@@ -7,6 +7,7 @@ class AdvertisementStatusChoices(models.TextChoices):
 
     OPEN = "OPEN", "Открыто"
     CLOSED = "CLOSED", "Закрыто"
+    DRAFT = "Черновик"
 
 
 class Advertisement(models.Model):
@@ -22,3 +23,8 @@ class Advertisement(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class FavoriteAdv(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    advertisement = models.ForeignKey(Advertisement, on_delete=models.CASCADE)

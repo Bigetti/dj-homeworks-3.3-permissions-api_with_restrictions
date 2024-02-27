@@ -1,5 +1,5 @@
+from rest_framework import generics
 from django_filters import rest_framework as filters
-from django_filters import DateFromToRangeFilter, FilterSet
 from .models import Advertisement
 
 

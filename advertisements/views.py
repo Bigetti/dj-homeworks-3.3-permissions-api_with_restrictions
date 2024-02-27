@@ -5,6 +5,7 @@ from .models import Advertisement
 from rest_framework import permissions
 from .serializers import AdvertisementSerializer
 from .filters import AdvertisementFilter
+from .permissions import IsAuthor
  
 
 
@@ -17,10 +18,8 @@ class AdvertisementViewSet(ModelViewSet):
     queryset = Advertisement.objects.all()
     serializer_class = AdvertisementSerializer
     filter_class = AdvertisementFilter
-
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
-    # filter_backends = [DjangoFilterBackend]
-    # filterset_fields = ['status', 'created_at']
+    permission_classes = [IsAuthor, permissions.IsAuthenticatedOrReadOnly]
+ 
     ordering_fields = ['id']
     ordering = ['id']  # Сортировка по возрастанию id по умолчанию
 
@@ -40,9 +39,9 @@ class AdvertisementViewSet(ModelViewSet):
 
     def get_permissions(self):
         """Получение прав для действий."""
-        if self.action in ["create", "update", "partial_update"]:
-            return [IsAuthenticated()]
-        return []
+        if self.action in ["create", "update", "partial_update", "destroy"]:
+            return [IsAuthor()]
+        return [permissions.IsAuthenticatedOrReadOnly]
 
     
     def list(self, request, *args, **kwargs):
