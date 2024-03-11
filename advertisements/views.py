@@ -17,7 +17,7 @@ class AdvertisementViewSet(ModelViewSet):
 
     queryset = Advertisement.objects.all()
     serializer_class = AdvertisementSerializer
-    filter_class = AdvertisementFilter
+    filterset_class = AdvertisementFilter
     permission_classes = [IsAuthor, permissions.IsAuthenticatedOrReadOnly]
  
     ordering_fields = ['id']
@@ -49,3 +49,10 @@ class AdvertisementViewSet(ModelViewSet):
         print("List view called with request data:", request.data)
         # Вызываем базовый метод list
         return super().list(request, *args, **kwargs)
+    
+    def get_queryset(self):
+        queryset = Advertisement.objects.exclude(status = 'DRAFT')
+        if self.request.user.is_authenticated or self.request.user.is_staff:
+            drafts = Advertisement.objects.filter(status='DRAFT', author=self.request.user)
+            queryset = queryset | drafts
+        return queryset
