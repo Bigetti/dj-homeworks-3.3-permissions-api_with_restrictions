@@ -16,7 +16,7 @@ class Advertisement(models.Model):
     title = models.TextField()
     description = models.TextField(default='')
     creator = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,)
-    status = models.TextField(choices=AdvertisementStatusChoices.choices, default=AdvertisementStatusChoices.OPEN)
+    status = models.TextField(choices=AdvertisementStatusChoices.choices, default=AdvertisementStatusChoices.DRAFT)
    
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

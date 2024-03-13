@@ -14,7 +14,7 @@ Content-Type: application/json
 Authorization: Token 07621ac6080c50fa4bb1a16c50b4c86ba59f685c
 
 {
-  "title": "Тахта",
+  "title": "Угли",
   "description": "За самовывоз"
 }
 
@@ -29,7 +29,7 @@ Content-Type: application/json
 Authorization: Token 0230753a74aed1662988ae55eb9dbf01c4b1fe41
 
 {
-  "title": "Тахта АДмина",
+  "title": "Пуфик Юзера",
   "description": "Админа дарит дивана"
 }
 
@@ -53,5 +53,5 @@ Content-Type: application/json
 ###
 
 # фильтрация по дате
-GET {{baseUrl}}/advertisements/?created_at_before=2022-10-01
+GET {{baseUrl}}/advertisements/?created_at_after=2024-01-01
 Content-Type: application/json
